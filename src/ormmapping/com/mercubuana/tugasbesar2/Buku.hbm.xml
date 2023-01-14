@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: 
+License Type: Evaluation
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.mercubuana.tugasbesar2.Buku" table="Buku" lazy="false">
+		<id name="idBuku" column="id_buku" type="integer" unsaved-value="0">
+			<generator class="native">
+			</generator>
+		</id>
+		<property name="namaBuku" column="nama_buku" type="string" length="25" not-null="true" lazy="false"/>
+		<property name="jenisBuku" column="jenis_buku" type="character" length="1" not-null="true" lazy="false"/>
+		<property name="jumlahBuku" column="jumlah_buku" type="integer" length="10" not-null="true" lazy="false"/>
+		<property name="sisaBuku" column="sisa_buku" type="integer" length="10" not-null="true" lazy="false"/>
+		<set name="ORM_Peminjam" lazy="true" cascade="save-update,lock" inverse="true">
+			<key column="Bukuid_buku" not-null="true"/>
+			<one-to-many class="com.mercubuana.tugasbesar2.Peminjam"/>
+		</set>
+	</class>
+</hibernate-mapping>
